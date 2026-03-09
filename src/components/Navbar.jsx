@@ -18,7 +18,7 @@ return (
 
 <ul className="hidden md:flex gap-6">
 <li><Link to="/"className="hover:text-slate-900 transition">Accueil</Link></li>
-<li><Link to="/about" className="hover:text-slate-900 transition">À propos</Link></li>
+<li><Link to="/about" className="hover:text-slate-900 dark:hover:text-red-400 transition font-medium">À propos</Link></li>
 <li><Link to="/projects" className="hover:text-slate-900 transition">Projects</Link></li>
 <li><Link to="/contact" className="hover:text-slate-900 transition">Contact</Link></li>
 </ul>
@@ -28,9 +28,9 @@ return (
 {menuOpen && (
 <ul className="mt-4 flex flex-col gap-3 md:hidden">
 <li><Link to="/" className="hover:text-slate-900 transition">Accueil</Link></li>
-<li><Link to="/about" className="hover:text-slate-900 transition">À propos</Link></li>
+<li><Link to="/about" className="hover:text-slate-900 dark:hover:text-red-400 transition font-medium">À propos</Link></li>
 <li><Link to="/projects" className="hover:text-slate-900 transition">Projects</Link></li>
-<li><Link to="/contact" className="hover:text-slate-900 transitio">Contact</Link></li>
+<li><Link to="/contact" className="hover:text-slate-900 dark:hover:text-red-400 transition">Contact</Link></li>
 </ul>
 )}
 
