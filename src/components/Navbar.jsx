@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function Navbar({ darkMode, setDarkMode }) { 
 
@@ -13,17 +13,6 @@ return (
 <h1 className="text-xl font-bold">My Portfolio</h1>
 
 <div className="flex gap-4 items-center">
-
-<button 
-onClick={() => setDarkMode(!darkMode)}
-className="bg-red-500 text-black px-3 py-1 rounded"
-> 
-🌙
-</button>
-
-<button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden">
-Menu
-</button>
 
 </div>
 

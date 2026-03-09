@@ -4,23 +4,41 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   const [likes, setLikes] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  
+  // État pour le mode sombre (initialisé via les préférences système ou le localStorage)
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem('theme') === 'dark' || 
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  );
 
-  // Animation de fondu au chargement de la page
   useEffect(() => {
     setIsVisible(true);
-  }, []);
+    // Applique ou retire la classe 'dark' sur l'élément racine (html)
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [darkMode]);
 
   return (
-    <div className="min-h-[90vh] flex items-center justify-center bg-white dark:bg-slate-900 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}">
+    <div className={`min-h-screen flex items-center justify-center bg-white dark:bg-slate-900 transition-colors duration-500 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
       
+      {/* Bouton de switch Thème (Flottant en haut à droite) */}
+      <button 
+        onClick={() => setDarkMode(!darkMode)}
+        className="fixed top-10 right-10 p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-2xl shadow-lg hover:scale-110 transition-transform z-50"
+      >
+        {darkMode ? '☀️' : '🌙'}
+      </button>
+
       <div className="max-w-4xl mx-auto px-4 text-center">
-        
-        {/* Badge d'accueil avec petite animation de pulsation */}
-        <span className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-widest text-red-600 uppercase bg-red-100 rounded-full animate-pulse">
+        <span className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-widest text-red-600 uppercase bg-red-100 dark:bg-red-900/30 rounded-full animate-pulse">
           Disponible pour de nouveaux projets
         </span>
 
-        {/* Titre Principal avec effet de survol sur le nom */}
         <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-6 leading-tight">
           Bonjour, <br className="md:hidden" /> je suis 
           <span className="text-red-600 inline-block hover:rotate-3 transition-transform cursor-default ml-3">
@@ -28,20 +46,17 @@ const Home = () => {
           </span>
         </h1>
 
-        {/* Sous-titre avec l'effet de machine à écrire (Typewriter) */}
         <div className="flex justify-center mb-10">
           <p className="text-xl md:text-2xl font-mono text-slate-600 dark:text-slate-400 border-r-4 border-red-600 pr-2 animate-typing overflow-hidden whitespace-nowrap max-w-fit">
             Développeur Web en formation
           </p>
         </div>
 
-        {/* Texte de présentation */}
         <p className="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400 mb-12 leading-relaxed">
           Bienvenue sur mon portfolio ! Je crée des applications web modernes, 
-          fluides et centrées sur l'utilisateur en utilisant les dernières technologies comme React et Tailwind.
+          fluides et centrées sur l'utilisateur en utilisant les dernières technologies comme **React** et **Tailwind**.
         </p>
 
-        {/* Boutons d'action avec animations de survol (Hover) */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
           <Link 
             to="/projects" 
@@ -58,7 +73,6 @@ const Home = () => {
             Likes : <span className="text-red-600">{likes}</span>
           </button>
         </div>
-
       </div>
     </div>
   );
