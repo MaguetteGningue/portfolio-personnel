@@ -5,7 +5,6 @@ const Home = () => {
   const [likes, setLikes] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   
-  
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem('theme') === 'dark' || 
     (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -13,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     setIsVisible(true);
-   
+    
     if (darkMode) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -26,8 +25,15 @@ const Home = () => {
   return (
     <div className={`min-h-screen flex items-center justify-center bg-white dark:bg-slate-900 transition-colors duration-500 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
       
-       
-     <div className="max-w-4xl mx-auto px-4 text-center">
+      {/* Bouton pour changer le mode (Utilise enfin setDarkMode) */}
+      <button 
+        onClick={() => setDarkMode(!darkMode)}
+        className="fixed bottom-5 right-5 p-3 rounded-full bg-slate-100 dark:bg-slate-800 shadow-lg hover:scale-110 transition-transform z-50"
+      >
+        {darkMode ? '☀️' : '🌙'}
+      </button>
+
+      <div className="max-w-4xl mx-auto px-4 text-center">
         <span className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-widest text-red-600 uppercase bg-red-100 dark:bg-red-900/30 rounded-full animate-pulse">
           Disponible pour de nouveaux projets
         </span>
