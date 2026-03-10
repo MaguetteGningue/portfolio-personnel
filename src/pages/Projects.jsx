@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Projects() {
- 
   const projects = [
     {
       id: 1,
@@ -35,10 +34,10 @@ function Projects() {
       img: "/utilisateur.jpg",
       link: "#"
     },
-      {
+    {
       id: 5,
-      title: "BUROK Business - Design publicitaire",
-      description: "Conception d'une affiche publicitaire compléte sous photoshop pour une boutique en ligne.",
+      title: "BUROK Business - Design",
+      description: "Conception d'une affiche publicitaire complète sous Photoshop pour une boutique en ligne.",
       tech: ["Photoshop", "Design Graphique","UI/UX"],
       img: "/burok.jpg",
       link: "#"
@@ -51,63 +50,58 @@ function Projects() {
       img: "/réservation.jpg",
       link: "#"
     }
-
   ];
 
-
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div className="container mx-auto py-12 px-4 transition-colors duration-500">
       
-      <h2 className="text-3xl font-bold text-center mb-10 text-gray-800 border-b-2 border-red-600 w-fit mx-auto pb-2">
+      <h2 className="text-4xl font-black text-center mb-16 text-slate-900 dark:text-white border-b-4 border-red-600 w-fit mx-auto pb-4">
         Mes Projets
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.map((project) => (
-          <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col">
+          <div key={project.id} className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col">
             
-            <div className="h-48 overflow-hidden bg-red-50 flex items-center justify-center">
+            <div className="h-52 overflow-hidden bg-slate-200 dark:bg-slate-700 flex items-center justify-center relative group">
               <img 
                 src={project.img} 
                 alt={project.title} 
-                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                
-                onError={(e) => { e.target.src = 'https://via.placeholder.com/400x200?text=Image+Introuvable'; }}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                onError={(e) => { e.target.src = 'https://via.placeholder.com/400x250?text=Projet+En+Cours'; }}
               />
+              <div className="absolute inset-0 bg-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
 
             <div className="p-6 flex-grow flex flex-col">
-
-              <h3 className="text-xl font-bold mb-2 text-gray-800">
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">
                 {project.title}
               </h3>
 
-              <p className="text-gray-600 mb-4 text-sm leading-relaxed flex-grow">
+              <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm leading-relaxed flex-grow">
                 {project.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-8">
                 {project.tech.map((t, index) => (
-                  <span key={index} className="bg-red-50 text-red-600 text-xs px-2 py-1 rounded-full font-semibold">
+                  <span key={index} className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-[10px] uppercase tracking-wider px-3 py-1 rounded-full font-bold">
                     {t}
                   </span>
                 ))}
               </div>
 
-              {/* Le bouton pour ouvrir le projet ou l'image */}
-              <button 
-                className="inline-block w-full text-center bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors font-medium">
-            
-                </button>
-
+              <a 
+                href={project.link}
+                className="inline-block w-full text-center bg-red-600 text-white py-3 rounded-xl hover:bg-red-700 transition-colors font-bold shadow-md hover:shadow-red-500/40"
+              >
+               
+              </a>
             </div>
           </div>
         ))}
-
       </div>
     </div>
   );
-}
+} // <--- NE PAS OUBLIER CETTE ACCOLADE
 
 export default Projects;

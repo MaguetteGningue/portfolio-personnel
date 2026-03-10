@@ -5,7 +5,7 @@ const Home = () => {
   const [likes, setLikes] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   
-  // État pour le mode sombre (initialisé via les préférences système ou le localStorage)
+  
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem('theme') === 'dark' || 
     (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -13,7 +13,7 @@ const Home = () => {
 
   useEffect(() => {
     setIsVisible(true);
-    // Applique ou retire la classe 'dark' sur l'élément racine (html)
+   
     if (darkMode) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -26,15 +26,8 @@ const Home = () => {
   return (
     <div className={`min-h-screen flex items-center justify-center bg-white dark:bg-slate-900 transition-colors duration-500 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
       
-      {/* Bouton de switch Thème (Flottant en haut à droite) */}
-      <button 
-        onClick={() => setDarkMode(!darkMode)}
-        className="fixed top-10 right-10 p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-2xl shadow-lg hover:scale-110 transition-transform z-50"
-      >
-        {darkMode ? '☀️' : '🌙'}
-      </button>
-
-      <div className="max-w-4xl mx-auto px-4 text-center">
+       
+     <div className="max-w-4xl mx-auto px-4 text-center">
         <span className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-widest text-red-600 uppercase bg-red-100 dark:bg-red-900/30 rounded-full animate-pulse">
           Disponible pour de nouveaux projets
         </span>
@@ -54,7 +47,7 @@ const Home = () => {
 
         <p className="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400 mb-12 leading-relaxed">
           Bienvenue sur mon portfolio ! Je crée des applications web modernes, 
-          fluides et centrées sur l'utilisateur en utilisant les dernières technologies comme **React** et **Tailwind**.
+          fluides et centrées sur l'utilisateur en utilisant les dernières technologies comme React et Tailwind.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

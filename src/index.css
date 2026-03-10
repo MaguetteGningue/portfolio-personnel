@@ -2,25 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 1. Correction Globale : Assure que le fond change partout */
+body {
+  @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-500;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
 
-
+/* 2. Correction Typewriter : On remplace l'orange par le rouge de ton thème */
 .typewriter {
   overflow: hidden;
-  border-right: .15em solid orange;
+  border-right: .15em solid #dc2626; /* Rouge (red-600) pour correspondre à ton logo */
   white-space: nowrap;
-  margin: 0 auto;
-  letter-spacing: .15em;
+  letter-spacing: .05em; /* Un peu moins espacé pour plus de lisibilité */
   animation: 
     typing 3.5s steps(40, end),
     blink-caret .75s step-end infinite;
 }
 
+/* Animation d'écriture */
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
 }
 
+/* Animation du curseur clignotant */
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: orange; }
+  50% { border-color: #dc2626; } /* Rouge aussi ici */
+}
+
+/* 3. Ajout : Animation de flottement pour ton nom */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
 }

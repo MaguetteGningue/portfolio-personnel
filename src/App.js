@@ -27,8 +27,9 @@ useEffect(() => {
 
 return (
 <div className="min-h-screen flex flex-col bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-400 transition-colors duration-500 ease-out">
+  <h1 className="text-4xl text-white font-bold">Le site fonctionne !</h1>
 
-<Router>
+
 <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
 <Routes>
@@ -40,7 +41,7 @@ return (
 
 <Footer />
 
-</Router>
+
 
 </div>
 );
